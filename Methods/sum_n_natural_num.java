@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class sum_n_natural_num {
+public class Sum_N_Natural_Num {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter a natural number: ");

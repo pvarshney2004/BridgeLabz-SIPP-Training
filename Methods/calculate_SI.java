@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class calculate_SI {
+public class Calculate_SI {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter principal amount: ");
