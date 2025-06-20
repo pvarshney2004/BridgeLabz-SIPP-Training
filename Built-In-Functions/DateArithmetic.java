@@ -13,6 +13,5 @@ public class DateArithmetic {
         // final output
         System.out.println(modified);
         sc.close();
-
     }
 }
