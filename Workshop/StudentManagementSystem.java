@@ -16,6 +16,7 @@ class StudentObj {
 		this.grade = grade;
 		this.subjects = sub;
 	}
+
 	@Override
 	public String toString() {
 		return this.name + "-" + this.age + "-" + this.grade + "-" + this.subjects;
@@ -24,6 +25,11 @@ class StudentObj {
 
 public class StudentManagementSystem {
 	Map<Integer, StudentObj> students;
+	PriorityQueue<StudentObj> pq = new PriorityQueue<>(new Comparator<>() {
+		public int compare(StudentObj s1, StudentObj s2) {
+			return s1.name.compareTo(s2.name);
+		}
+	});
 
 	public StudentManagementSystem() {
 		// TODO Auto-generated constructor stub
@@ -31,11 +37,12 @@ public class StudentManagementSystem {
 	}
 
 	public void addStudent(int id, StudentObj s) {
-//		if(!students.containsKey(id)) {
-//			System.out.println("Id Already exist");
-//			return;
-//		}
+		if (students.containsKey(id)) {
+			System.out.println("Id Already exist");
+			return;
+		}
 		students.put(id, s);
+		pq.add(s);
 	}
 
 	public void removeStudent(int id) {
@@ -68,20 +75,18 @@ public class StudentManagementSystem {
 		}
 	}
 
+	public void sortByName() {
+		System.out.println("\nStudents sorted by name: ");
+		while (!pq.isEmpty()) {
+			StudentObj s = pq.poll();
+			System.out.println(s.id + " -> " + s);
+		}
+	}
+
 	public static void main(String[] args) {
 		StudentObj s1 = new StudentObj(1, "Sandeep", 20, 'A', Arrays.asList("Math", "English", "Science"));
 		StudentObj s2 = new StudentObj(2, "Abishek", 21, 'B', Arrays.asList("Math", "English"));
 		StudentObj s3 = new StudentObj(3, "Nikhil", 23, 'A', Arrays.asList("English", "Science"));
-		
-		PriorityQueue<StudentObj> pq = new PriorityQueue<>(new Comparator<>() {
-			public int compare(StudentObj s1, StudentObj s2) {
-				return s1.name.compareTo(s2.name);
-			}
-		});
-	
-		pq.add(s1);
-		pq.add(s2);
-		pq.add(s3);
 
 		StudentManagementSystem obj = new StudentManagementSystem();
 		obj.addStudent(1, s1);
@@ -96,14 +101,8 @@ public class StudentManagementSystem {
 		System.out.println(obj.searchStudentbyID(2));
 
 		obj.findStudentbySubject("Math");
-//
-		System.out.println("\nStudents sorted by name: ");
-		while (!pq.isEmpty()) {
-			StudentObj s = pq.poll();
-			System.out.println(s.id + " -> " + s);
-		}
-		
-//		obj.removeStudent(1);
+
+		obj.sortByName();
 
 	}
 
