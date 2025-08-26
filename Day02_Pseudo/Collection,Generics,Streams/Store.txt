@@ -1,0 +1,36 @@
+class Item {
+    attribute name
+    attribute price
+
+    constructor(name, price) {
+        this.name = name
+        this.price = price
+    }
+}
+
+class Cart {
+    attribute list<Item> items
+
+    constructor() {
+        items = new List()
+    }
+
+    method addItem(item) {
+        items.add(item)
+    }
+
+    // Generic method to calculate total
+    method<T extends Item> calculateTotal(List<T> itemList) {
+        total = 0
+        for each item in itemList
+            total += item.price
+        return total
+    }
+}
+
+// Main
+cart = new Cart()
+cart.addItem(new Item("Laptop", 50000))
+cart.addItem(new Item("Mouse", 1000))
+
+print("Total Price = " + cart.calculateTotal(cart.items))

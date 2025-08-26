@@ -1,0 +1,43 @@
+abstract class Crop {
+    attribute name
+
+    constructor(name) {
+        this.name = name
+    }
+
+    abstract method waterRequirement()
+    abstract method harvestTime()
+}
+
+// Implementation Rice
+class Rice extends Crop {
+    constructor() { super("Rice") }
+
+    method waterRequirement() {
+        return "High water needed"
+    }
+
+    method harvestTime() {
+        return "Harvest in 120 days"
+    }
+}
+
+// Implementation Wheat
+class Wheat extends Crop {
+    constructor() { super("Wheat") }
+
+    method waterRequirement() {
+        return "Medium water needed"
+    }
+
+    method harvestTime() {
+        return "Harvest in 90 days"
+    }
+}
+
+// Main
+crop1 = new Rice()
+print(crop1.name + " -> " + crop1.waterRequirement() + ", " + crop1.harvestTime())
+
+crop2 = new Wheat()
+print(crop2.name + " -> " + crop2.waterRequirement() + ", " + crop2.harvestTime())

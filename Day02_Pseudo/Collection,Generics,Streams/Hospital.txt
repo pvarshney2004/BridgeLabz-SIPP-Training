@@ -1,0 +1,27 @@
+class Doctor {
+    attribute name
+    attribute specialization
+
+    constructor(name, specialization) {
+        this.name = name
+        this.specialization = specialization
+    }
+}
+
+// Map departments to list of doctors
+map<String, List<Doctor>> hospital
+
+hospital.put("Cardiology", [new Doctor("Dr. A", "Heart"), new Doctor("Dr. B", "Heart")])
+hospital.put("Neurology", [new Doctor("Dr. C", "Brain"), new Doctor("Dr. D", "Brain")])
+hospital.put("Orthopedics", [new Doctor("Dr. E", "Bones")])
+
+// Filter by specialization using streams
+specialization = "Heart"
+for each dept, doctors in hospital.entrySet()
+    filtered = doctors.stream()
+                      .filter(d -> d.specialization == specialization)
+                      .collect()
+    if filtered not empty
+        print("Department: " + dept)
+        for each doc in filtered
+            print("Doctor: " + doc.name)

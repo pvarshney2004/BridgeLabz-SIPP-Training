@@ -1,0 +1,28 @@
+class QuizTimer {
+    attribute array timeSlots
+    attribute index
+
+    constructor(slots) {
+        timeSlots = slots
+        index = 0
+    }
+
+    method nextSlot() {
+        index = (index + 1) mod length(timeSlots)
+        return timeSlots[index]
+    }
+
+    method startQuiz() {
+        for i = 0 to length(timeSlots)-1
+            current = nextSlot()
+            if current <= 5
+                print("Warning: " + current + " seconds left for this question!")
+            else
+                print("Time left: " + current + "s")
+    }
+}
+
+// Main
+slots = [30, 25, 10, 5]   // each question’s timer
+quiz = new QuizTimer(slots)
+quiz.startQuiz()

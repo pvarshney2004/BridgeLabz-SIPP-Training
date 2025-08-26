@@ -1,0 +1,35 @@
+class Job {
+    attribute name
+    attribute deadline
+    attribute processingTime
+
+    constructor(name, deadline, processingTime) {
+        this.name = name
+        this.deadline = deadline
+        this.processingTime = processingTime
+    }
+}
+
+class JobScheduler {
+    attribute priorityQueue jobs   // ordered by earliest deadline first
+
+    method addJob(job) {
+        insert job into priorityQueue (priority = job.deadline)
+    }
+
+    method executeJobs() {
+        while jobs not empty
+            current = removeMin(jobs)   // job with earliest deadline
+            print("Executing Job: " + current.name +
+                  " Deadline: " + current.deadline +
+                  " Processing Time: " + current.processingTime)
+    }
+}
+
+// Main
+scheduler = new JobScheduler()
+scheduler.addJob(new Job("A", 2, 3))
+scheduler.addJob(new Job("B", 1, 2))
+scheduler.addJob(new Job("C", 3, 1))
+
+scheduler.executeJobs()
