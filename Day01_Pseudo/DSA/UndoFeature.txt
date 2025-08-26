@@ -1,0 +1,33 @@
+class TextEditor {
+    attribute text
+    attribute stack undoStack
+
+    constructor() {
+        text = ""
+        undoStack = new Stack()
+    }
+
+    method type(word) {
+        push current text into undoStack
+        append word to text
+    }
+
+    method undo() {
+        if undoStack is not empty
+            text = pop from undoStack
+        else
+            print("Nothing to undo")
+    }
+
+    method showText() {
+        print(text)
+    }
+}
+
+// Main
+editor = new TextEditor()
+editor.type("Hello")
+editor.type(" World")
+editor.showText()   // Output: Hello World
+editor.undo()
+editor.showText()   // Output: Hello

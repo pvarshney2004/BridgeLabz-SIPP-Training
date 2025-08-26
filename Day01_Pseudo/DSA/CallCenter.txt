@@ -1,0 +1,39 @@
+class Customer {
+    attribute name
+    attribute type  // example "normal" or "emergency"
+
+    constructor(name, type) {
+        this.name = name
+        this.type = type
+    }
+}
+
+class CallCenterQueue {
+    attribute queue normalQueue
+    attribute queue emergencyQueue
+
+    method addCustomer(customer) {
+        if customer.type == "emergency"
+            enqueue emergencyQueue with customer
+        else
+            enqueue normalQueue with customer
+    }
+
+    method serveCustomer() {
+        if emergencyQueue not empty
+            return dequeue emergencyQueue
+        else if normalQueue not empty
+            return dequeue normalQueue
+        else
+            print("No customers waiting")
+    }
+}
+
+// Main
+callCenter = new CallCenterQueue()
+callCenter.addCustomer(new Customer("John", "normal"))
+callCenter.addCustomer(new Customer("Alice", "emergency"))
+callCenter.addCustomer(new Customer("Bob", "normal"))
+
+print(callCenter.serveCustomer().name) // Alice served first
+print(callCenter.serveCustomer().name) // John next

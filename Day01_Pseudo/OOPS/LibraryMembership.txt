@@ -1,0 +1,24 @@
+class Member {
+    attribute name
+    attribute memberId
+    attribute membershipDate
+    attribute expiryDate
+
+    constructor(name, id, membershipDate, expiryDate) {
+        this.name = name
+        this.memberId = id
+        this.membershipDate = membershipDate
+        this.expiryDate = expiryDate
+    }
+
+    method isMembershipValid(currentDate) {
+        if currentDate <= expiryDate
+            return true
+        else
+            return false
+    }
+}
+
+// Main
+member1 = new Member("Alice", "M101", "2025-01-01", "2025-12-31")
+print(member1.isMembershipValid("2025-08-20"))

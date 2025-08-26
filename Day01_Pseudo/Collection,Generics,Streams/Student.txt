@@ -1,0 +1,11 @@
+map<String, Integer> studentScores
+
+studentScores.put("Alice", 88)
+studentScores.put("Bob", 92)
+studentScores.put("Charlie", 85)
+
+// Find highest scorer using stream
+highest = studentScores.entrySet().stream().max(by value)
+
+// Output
+print("Top Scorer: " + highest.key + " with " + highest.value)

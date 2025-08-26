@@ -1,0 +1,64 @@
+class Pet {
+    attribute name
+    attribute age
+
+    constructor(name, age) {
+        this.name = name
+        this.age = age
+    }
+
+    method displayInfo() {
+        print("Name: " + name + ", Age: " + age)
+    }
+}
+
+// Derived Class Dog
+class Dog extends Pet {
+    attribute breed
+
+    constructor(name, age, breed) {
+        super(name, age)
+        this.breed = breed
+    }
+
+    method displayInfo() {
+        super.displayInfo()
+        print("Breed: " + breed)
+    }
+}
+
+// Derived Class Cat
+class Cat extends Pet {
+    attribute color
+
+    constructor(name, age, color) {
+        super(name, age)
+        this.color = color
+    }
+
+    method displayInfo() {
+        super.displayInfo()
+        print("Color: " + color)
+    }
+}
+
+// Derived Class Bird
+class Bird extends Pet {
+    attribute species
+
+    constructor(name, age, species) {
+        super(name, age)
+        this.species = species
+    }
+
+    method displayInfo() {
+        super.displayInfo()
+        print("Species: " + species)
+    }
+}
+
+// Main
+create Dog("Tommy", 3, "Labrador")
+create Cat("Kitty", 2, "White")
+create Bird("Mithu", 1, "Parrot")
+call displayInfo() on each
