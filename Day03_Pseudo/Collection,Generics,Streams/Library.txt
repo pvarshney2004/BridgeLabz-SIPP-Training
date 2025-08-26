@@ -1,0 +1,22 @@
+class Book {
+    attribute title
+    attribute year
+    attribute rating
+
+    constructor(title, year, rating) { ... }
+}
+
+// Main
+list<Book> books
+books.add(new Book("Java Basics", 2018, 4.7))
+books.add(new Book("C++ Fundamentals", 2010, 4.2))
+books.add(new Book("AI in Practice", 2021, 4.8))
+
+// Filter books using streams
+filteredBooks = books.stream()
+                     .filter(b -> b.year > 2015 && b.rating > 4.5)
+                     .collect()
+
+// Display
+for each book in filteredBooks
+    print(book.title + " (" + book.year + ") Rating: " + book.rating)

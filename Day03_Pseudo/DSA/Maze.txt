@@ -1,0 +1,27 @@
+class MazeSolver {
+    method solveMaze(maze, x, y, visited) {
+        if (x,y) is outside maze OR wall OR already visited
+            return false
+
+        if (x,y) is destination
+            print("Path Found!")
+            return true
+
+        mark (x,y) as visited
+
+        // Try moves: up, right, down, left
+        if solveMaze(maze, x-1, y, visited) return true
+        if solveMaze(maze, x, y+1, visited) return true
+        if solveMaze(maze, x+1, y, visited) return true
+        if solveMaze(maze, x, y-1, visited) return true
+
+        // Backtrack
+        unmark (x,y)
+        return false
+    }
+}
+
+// Main
+maze = 2D grid with 0 (path), 1 (wall)
+solver = new MazeSolver()
+solver.solveMaze(maze, startX, startY, emptyVisitedSet)

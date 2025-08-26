@@ -1,0 +1,47 @@
+interface Searchable {
+    method search(criteria)
+}
+
+interface Printable {
+    method printReport()
+}
+
+// Report type: LabReport
+class LabReport implements Searchable, Printable {
+    attribute patientName
+    attribute testType
+
+    constructor(patientName, testType) { ... }
+
+    method search(criteria) {
+        return testType contains criteria
+    }
+
+    method printReport() {
+        print("Lab Report for " + patientName + " Test: " + testType)
+    }
+}
+
+// Report type: Prescription
+class Prescription implements Searchable, Printable {
+    attribute patientName
+    attribute medicineList
+
+    constructor(patientName, medicineList) { ... }
+
+    method search(criteria) {
+        return criteria in medicineList
+    }
+
+    method printReport() {
+        print("Prescription for " + patientName + " Medicines: " + medicineList)
+    }
+}
+
+// Main
+reports = [ new LabReport("Alice", "Blood Test"),
+            new Prescription("Bob", ["Paracetamol", "Vitamin C"]) ]
+
+for each report in reports
+    if report.search("Blood")
+        report.printReport()

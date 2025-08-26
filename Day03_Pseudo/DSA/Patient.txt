@@ -1,0 +1,27 @@
+class Patient {
+    attribute id
+    attribute name
+    attribute age
+    constructor(id, name, age) { ... }
+}
+
+// Main
+map<Integer, Patient> patientRecords
+
+// Add records
+patientRecords.put(101, new Patient(101, "Alice", 25))
+patientRecords.put(102, new Patient(102, "Bob", 40))
+
+// Retrieve
+p = patientRecords.get(101)
+print("Patient Found: " + p.name)
+
+// Update
+patientRecords.put(102, new Patient(102, "Bob", 41))
+
+// Delete
+patientRecords.remove(101)
+
+// Display remaining
+for each entry in patientRecords
+    print(entry.key + " -> " + entry.value.name)

@@ -1,0 +1,45 @@
+class Customer {
+    attribute name
+    attribute address
+    constructor(name, address) { ... }
+}
+
+class Restaurant {
+    attribute name
+    attribute menuItems
+    constructor(name, menuItems) { ... }
+}
+
+class DeliveryBoy {
+    attribute name
+    attribute phone
+    constructor(name, phone) { ... }
+}
+
+class Order {
+    attribute Customer customer
+    attribute Restaurant restaurant
+    attribute DeliveryBoy deliveryBoy
+    attribute list<String> items
+
+    constructor(customer, restaurant, deliveryBoy, items) {
+        this.customer = customer
+        this.restaurant = restaurant
+        this.deliveryBoy = deliveryBoy
+        this.items = items
+    }
+
+    method displayOrder() {
+        print("Customer: " + customer.name)
+        print("Restaurant: " + restaurant.name)
+        print("Delivery by: " + deliveryBoy.name)
+        print("Items: " + items)
+    }
+}
+
+// Main
+cust = new Customer("Alice", "Street 5")
+rest = new Restaurant("Pizza Hut", ["Pizza", "Burger"])
+dboy = new DeliveryBoy("John", "9876543210")
+order = new Order(cust, rest, dboy, ["Pizza", "Coke"])
+order.displayOrder()

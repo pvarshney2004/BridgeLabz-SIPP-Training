@@ -1,0 +1,27 @@
+class Transaction<T> {
+    attribute T paymentMethod
+    attribute double amount
+
+    constructor(paymentMethod, amount) {
+        this.paymentMethod = paymentMethod
+        this.amount = amount
+    }
+
+    method process() {
+        print("Processing " + paymentMethod + " Transaction of Rs. " + amount)
+    }
+}
+
+// Payment types
+class UPI { attribute upiId }
+class Card { attribute cardNumber }
+class NetBanking { attribute accountNumber }
+
+// Main
+t1 = new Transaction<UPI>(new UPI("alice@upi"), 500)
+t2 = new Transaction<Card>(new Card("1234-5678-9876"), 1000)
+t3 = new Transaction<NetBanking>(new NetBanking("AC12345"), 2000)
+
+t1.process()
+t2.process()
+t3.process()
