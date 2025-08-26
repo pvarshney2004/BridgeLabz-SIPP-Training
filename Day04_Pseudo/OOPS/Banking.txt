@@ -1,0 +1,66 @@
+// Base class
+abstract class Account {
+    protected String accountNumber;
+    protected double balance;
+
+    Account(String accountNumber, double balance) {
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+    }
+
+    abstract void withdraw(double amount);
+
+    void deposit(double amount) {
+        balance += amount;
+        System.out.println("Deposited: " + amount + " | Balance: " + balance);
+    }
+}
+
+// Savings Account
+class SavingAccount extends Account {
+    private static final double MIN_BALANCE = 1000;
+
+    SavingAccount(String accNo, double bal) {
+        super(accNo, bal);
+    }
+
+    @Override
+    void withdraw(double amount) {
+        if (balance - amount < MIN_BALANCE) {
+            System.out.println("Withdrawal denied! Maintain min balance.");
+        } else {
+            balance -= amount;
+            System.out.println("Withdrawn: " + amount + " | Balance: " + balance);
+        }
+    }
+}
+
+// Current Account
+class CurrentAccount extends Account {
+    private static final double OVERDRAFT_LIMIT = -5000;
+
+    CurrentAccount(String accNo, double bal) {
+        super(accNo, bal);
+    }
+
+    @Override
+    void withdraw(double amount) {
+        if (balance - amount < OVERDRAFT_LIMIT) {
+            System.out.println("Withdrawal denied! Overdraft limit reached.");
+        } else {
+            balance -= amount;
+            System.out.println("Withdrawn: " + amount + " | Balance: " + balance);
+        }
+    }
+}
+
+// Demo
+public class BankingPortal {
+    public static void main(String[] args) {
+        Account s1 = new SavingAccount("S001", 5000);
+        Account c1 = new CurrentAccount("C001", 2000);
+
+        s1.withdraw(4500); // Denied
+        c1.withdraw(6000); // Allowed (within overdraft)
+    }
+}

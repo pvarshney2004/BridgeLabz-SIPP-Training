@@ -1,0 +1,38 @@
+import java.util.*;
+
+class CityGraph {
+    private Map<String, List<String>> adj = new HashMap<>();
+    private Set<String> highRiskZones = new HashSet<>(Arrays.asList("Z3", "Z5"));
+
+    void addConnection(String a, String b) {
+        adj.computeIfAbsent(a, k -> new ArrayList<>()).add(b);
+        adj.computeIfAbsent(b, k -> new ArrayList<>()).add(a);
+    }
+
+    void dfs(String start, Set<String> visited) {
+        if (visited.contains(start)) return;
+        visited.add(start);
+
+        if (highRiskZones.contains(start)) {
+            System.out.println("High-risk zone detected: " + start);
+        }
+
+        for (String neighbor : adj.getOrDefault(start, new ArrayList<>())) {
+            dfs(neighbor, visited);
+        }
+    }
+}
+
+// Demo
+public class CrimePrediction {
+    public static void main(String[] args) {
+        CityGraph g = new CityGraph();
+        g.addConnection("Z1", "Z2");
+        g.addConnection("Z2", "Z3");
+        g.addConnection("Z3", "Z4");
+        g.addConnection("Z5", "Z6");
+
+        Set<String> visited = new HashSet<>();
+        g.dfs("Z1", visited);
+    }
+}

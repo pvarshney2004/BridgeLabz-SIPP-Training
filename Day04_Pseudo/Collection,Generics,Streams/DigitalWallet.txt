@@ -1,0 +1,41 @@
+import java.time.LocalDate;
+import java.util.*;
+import java.util.stream.*;
+
+class Transaction {
+    String merchant;
+    double amount;
+    LocalDate date;
+
+    Transaction(String merchant, double amount, LocalDate date) {
+        this.merchant = merchant;
+        this.amount = amount;
+        this.date = date;
+    }
+}
+
+public class WalletReport {
+    public static void main(String[] args) {
+        List<Transaction> txns = Arrays.asList(
+            new Transaction("Amazon", 1200, LocalDate.of(2025, 1, 15)),
+            new Transaction("Amazon", 800, LocalDate.of(2025, 1, 25)),
+            new Transaction("Flipkart", 500, LocalDate.of(2025, 2, 10)),
+            new Transaction("Amazon", 1500, LocalDate.of(2025, 2, 12))
+        );
+
+        Map<String, Map<Integer, Double>> report = txns.stream()
+            .collect(Collectors.groupingBy(
+                t -> t.merchant,
+                Collectors.groupingBy(
+                    t -> t.date.getMonthValue(),
+                    Collectors.summingDouble(t -> t.amount)
+                )
+            ));
+
+        report.forEach((merchant, monthData) -> {
+            System.out.println("Merchant: " + merchant);
+            monthData.forEach((month, total) ->
+                System.out.println("  Month " + month + " → Rs." + total));
+        });
+    }
+}

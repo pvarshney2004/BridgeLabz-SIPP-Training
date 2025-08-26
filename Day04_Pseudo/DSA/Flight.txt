@@ -1,0 +1,60 @@
+class Flight {
+    String name;
+    int price, duration;
+
+    Flight(String name, int price, int duration) {
+        this.name = name;
+        this.price = price;
+        this.duration = duration;
+    }
+}
+
+// Comparator for sorting by price, then duration
+class FlightComparator implements java.util.Comparator<Flight> {
+    public int compare(Flight f1, Flight f2) {
+        if (f1.price == f2.price) {
+            return f1.duration - f2.duration;
+        }
+        return f1.price - f2.price;
+    }
+}
+
+// Merge Sort with Comparator
+class FlightSorter {
+    public static void mergeSort(List<Flight> flights, Comparator<Flight> comp) {
+        if (flights.size() <= 1) return;
+        int mid = flights.size() / 2;
+        List<Flight> left = new ArrayList<>(flights.subList(0, mid));
+        List<Flight> right = new ArrayList<>(flights.subList(mid, flights.size()));
+
+        mergeSort(left, comp);
+        mergeSort(right, comp);
+
+        flights.clear();
+        int i = 0, j = 0;
+        while (i < left.size() && j < right.size()) {
+            if (comp.compare(left.get(i), right.get(j)) <= 0)
+                flights.add(left.get(i++));
+            else
+                flights.add(right.get(j++));
+        }
+        flights.addAll(left.subList(i, left.size()));
+        flights.addAll(right.subList(j, right.size()));
+    }
+}
+
+// Demo
+public class FlightAnalyzer {
+    public static void main(String[] args) {
+        List<Flight> flights = new ArrayList<>();
+        flights.add(new Flight("Indigo", 5000, 120));
+        flights.add(new Flight("AirIndia", 5000, 90));
+        flights.add(new Flight("SpiceJet", 4500, 100));
+
+        FlightSorter.mergeSort(flights, new FlightComparator());
+
+        for (Flight f : flights) {
+            System.out.println(f.name + " | Price: " + f.price + " | Duration: " + f.duration);
+        }
+    }
+}

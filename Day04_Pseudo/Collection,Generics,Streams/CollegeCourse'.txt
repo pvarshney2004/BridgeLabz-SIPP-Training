@@ -1,0 +1,29 @@
+import java.util.*;
+
+class Student {
+    String name;
+    Student(String name) { this.name = name; }
+    public String toString() { return name; }
+}
+
+class Course {
+    String title;
+    Course(String title) { this.title = title; }
+    public String toString() { return title; }
+}
+
+public class CourseRegistration {
+    public static void main(String[] args) {
+        Map<Course, List<Student>> registration = new HashMap<>();
+
+        Course java = new Course("Java");
+        Course dsa = new Course("DSA");
+
+        registration.put(java, new ArrayList<>(Arrays.asList(new Student("Amit"), new Student("Riya"))));
+        registration.put(dsa, new ArrayList<>(Arrays.asList(new Student("Sam"))));
+
+        for (Map.Entry<Course, List<Student>> entry : registration.entrySet()) {
+            System.out.println(entry.getKey() + " → " + entry.getValue());
+        }
+    }
+}

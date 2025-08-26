@@ -1,0 +1,46 @@
+// Rentable interface
+interface Rentable {
+    void rent();
+    void returnVehicle();
+}
+
+// Abstract vehicle
+abstract class Vehicle implements Rentable {
+    String model;
+    Vehicle(String model) { this.model = model; }
+}
+
+// Car class
+class Car extends Vehicle {
+    Car(String model) { super(model); }
+    public void rent() { System.out.println("Car " + model + " rented."); }
+    public void returnVehicle() { System.out.println("Car " + model + " returned."); }
+}
+
+// Bike class
+class Bike extends Vehicle {
+    Bike(String model) { super(model); }
+    public void rent() { System.out.println("Bike " + model + " rented."); }
+    public void returnVehicle() { System.out.println("Bike " + model + " returned."); }
+}
+
+// Vehicle Factory
+class VehicleFactory {
+    static Vehicle createVehicle(String type, String model) {
+        if (type.equalsIgnoreCase("car")) return new Car(model);
+        if (type.equalsIgnoreCase("bike")) return new Bike(model);
+        throw new IllegalArgumentException("Unknown vehicle type");
+    }
+}
+
+// Demo
+public class RentalApp {
+    public static void main(String[] args) {
+        Vehicle v1 = VehicleFactory.createVehicle("car", "Honda City");
+        v1.rent();
+        v1.returnVehicle();
+
+        Vehicle v2 = VehicleFactory.createVehicle("bike", "Royal Enfield");
+        v2.rent();
+    }
+}
