@@ -1,0 +1,15 @@
+Function binarySearch(catalog, productName):
+    low = 0
+    high = catalog.length - 1
+    while low <= high:
+        mid = (low + high) / 2
+        if catalog[mid] == productName → return FOUND
+        else if productName < catalog[mid] → high = mid - 1
+        else → low = mid + 1
+    return NOT FOUND
+
+Main Flow:
+    catalog = [AirPods, Backpack, Camera, Laptop, Shoes, Smartphone, Watch]
+    Rohan searches "Laptop" → FOUND
+    Priya searches "Headphones" → NOT FOUND
+    Ali searches "Shoes" → FOUND

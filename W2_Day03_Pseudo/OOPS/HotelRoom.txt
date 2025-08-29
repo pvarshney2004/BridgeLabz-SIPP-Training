@@ -1,0 +1,18 @@
+Class Room
+    Attributes: roomNumber, customerName, daysStayed
+    Method: calculateBill()  // overridden by subclasses
+
+Class DeluxeRoom extends Room
+    Rate = 3000
+    Override calculateBill() → return daysStayed * Rate
+
+Class SuiteRoom extends Room
+    Rate = 5000
+    Override calculateBill() → return daysStayed * Rate
+
+Main Flow:
+    Customer Ravi books Deluxe for 3 nights
+    Print bill (3 * 3000 = 9000)
+
+    Customer Anita books Suite for 2 nights
+    Print bill (2 * 5000 = 10000)

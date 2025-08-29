@@ -1,0 +1,22 @@
+Class Student
+    Attributes: name, marks
+
+Function mergeSort(list):
+    if list size <= 1 → return list
+    split into left, right
+    leftSorted = mergeSort(left)
+    rightSorted = mergeSort(right)
+    return merge(leftSorted, rightSorted)
+
+Function merge(left, right):
+    result = []
+    while both not empty:
+        compare by marks DESC
+        if marks equal → compare by name ASC
+        add smaller/larger into result
+    return merged list
+
+Main Flow:
+    students = [Amit 92, Bhavna 92, Kiran 85, Dinesh 78, Charu 92]
+    sorted = mergeSort(students)
+    Output final rank list

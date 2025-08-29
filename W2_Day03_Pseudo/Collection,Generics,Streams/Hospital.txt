@@ -1,0 +1,16 @@
+Class Doctor
+    Attributes: name, specialization, experienceYears
+
+Data Structure:
+    departmentDirectory = Map<Department, List<Doctor>>
+
+Operations:
+    addDoctor(department, doctor)
+    getDoctors(department) → return List<Doctor>
+
+Main Flow:
+    Cardiology → [Dr. Mehta, Dr. Kapoor]
+    Neurology → [Dr. Sharma, Dr. Das]
+    Pediatrics → [Dr. Ritu, Dr. Anjali]
+
+    Query Neurology → print Dr. Sharma + Dr. Das

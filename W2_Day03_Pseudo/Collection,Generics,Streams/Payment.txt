@@ -1,0 +1,24 @@
+Generic Class Transaction<T>
+    Attribute: paymentDetails (T)
+    Methods:
+        processPayment()
+        getTransactionDetails()
+
+Class UPI
+    Attributes: upiId, amount, merchantName
+
+Class Card
+    Attributes: cardNumber, cvv, expiryDate, amount
+
+Class NetBanking
+    Attributes: bankName, accountNumber, amount
+
+Main Flow:
+    t1 = Transaction<UPI>("user@upi", 1200, "Amazon")
+    t1.processPayment() → print success message
+
+    t2 = Transaction<Card>("1234-5678-9876-5432", "123", "12/27", 5000)
+    t2.processPayment() → print success message
+
+    t3 = Transaction<NetBanking>("HDFC", "00112233", 8000)
+    t3.processPayment() → print success message

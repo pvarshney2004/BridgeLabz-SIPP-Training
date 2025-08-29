@@ -1,0 +1,20 @@
+Class Course
+    Attributes: title, duration, price
+    Methods: getDetails()
+
+Class Student
+    Attributes: name, email, enrolledCourses (List<Course>)
+    Methods:
+        enrollCourse(course)
+            if course already in enrolledCourses → print "Already Enrolled"
+            else → add course to enrolledCourses
+        viewEnrolledCourses()
+            print student name + list of courses with details
+
+Main Flow:
+    Create courses → Java Programming Basics, Data Structures, Spring Boot
+    Create students → Amit, Priya
+    Amit enrolls in Java + Data Structures
+    Priya enrolls in Spring Boot + Java
+    Print Amit’s enrolled courses
+    Print Priya’s enrolled courses
